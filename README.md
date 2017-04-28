@@ -1,2 +1,2 @@
-# AP_CS_Projects
+# AP CS Projects
 Projects from AP Computer Science course.
