@@ -10,7 +10,7 @@ Purpose: Assignment incorporates concepts of loops
 import java.util.*;
 
 public class GuessingGame {
-    public static final int MAX_NUM = 100;  // Sets guessing range.
+    private static final int MAX_NUM = 100;  // Sets guessing range.
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         boolean gameOver = false;
@@ -19,7 +19,7 @@ public class GuessingGame {
         int leastGuesses = 9999;
 
         introduceGame();
-        while (gameOver == false) {
+        while (!gameOver) {
             int guesses = playGame(console);
             gameOver = gameState(console);
             totalGames++;
@@ -31,14 +31,14 @@ public class GuessingGame {
         getResults(totalGames, totalGuesses, leastGuesses);
     }
 
-    public static int playGame(Scanner console) {
+    private static int playGame(Scanner console) {
         int randomNum = getRandom();
-        int guess = 0;  // Useer guess
+        int guess = 0;  // User guess
         int guesses = 0;  // Number of guesses
 
         System.out.println("I'm thinking of a number between 1 and " + MAX_NUM);
         while (guess != randomNum) {
-            guess = userInput(console, "Your Guess: ");
+            guess = userInput(console);
             if (guess < randomNum) {
                 System.out.println("It's higher");
             }
@@ -56,20 +56,18 @@ public class GuessingGame {
         return guesses;
     }
 
-    public static int getRandom() {
+    private static int getRandom() {
         // Generates a random number between 1 and MAX_NUM
-        int num = (int) (MAX_NUM * Math.random());
-        return num;
+        return (int) (MAX_NUM * Math.random());
     }
 
-    public static int userInput(Scanner console, String text) {
+    private static int userInput(Scanner console) {
         // Gets a user int input
-        System.out.print(text);
-        int input = console.nextInt();
-        return input;
+        System.out.print("Your Guess: ");
+        return console.nextInt();
     }
 
-    public static boolean gameState(Scanner console) {
+    private static boolean gameState(Scanner console) {
         // Determines if the user still wishes to play
         System.out.print("Do you want to continue playing? ");
         String input = console.next();
@@ -84,7 +82,7 @@ public class GuessingGame {
         }
     }
 
-    public static void introduceGame() {
+    private static void introduceGame() {
         // Haiku
         System.out.println("Guess any number");
         System.out.println("Between the selected range");
@@ -92,7 +90,7 @@ public class GuessingGame {
         System.out.println();
     }
 
-    public static void getResults(int totalGames, int totalGuesses, int leastGuesses) {
+    private static void getResults(int totalGames, int totalGuesses, int leastGuesses) {
         // Print stats
         System.out.println("Total Games: " + totalGames);
         System.out.println("Total Guesses: " + totalGuesses);
