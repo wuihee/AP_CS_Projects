@@ -37,7 +37,7 @@ public class Item {
     public String toString() {
         // 	Returns a String representation of this item.
         if (bulkQuantity > 0) {
-            return name + ", $" + price + " ($" + bulkPrice + ") for " + bulkQuantity;
+            return name + ", $" + price + " ($" + bulkPrice + " for " + bulkQuantity + ")";
         }
         return name + ", $" + price;
     }
