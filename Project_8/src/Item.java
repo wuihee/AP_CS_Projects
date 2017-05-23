@@ -28,8 +28,9 @@ public class Item {
 
     double priceFor(int quantity) {
         // Returns the price for a given quantity of the item.
-        if (bulkQuantity == quantity) {
-            return bulkPrice;
+        quantity = (int) isNegativeValue(quantity, "quantity");
+        if (quantity % bulkQuantity == 0) {
+            return bulkPrice * (quantity / bulkQuantity);
         }
         return price * quantity;
     }
