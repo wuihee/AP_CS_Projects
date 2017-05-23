@@ -1,6 +1,7 @@
 public class ShoppingTest {
     public static void main(String[] args) {
-        itemTest();
+        // itemTest();
+        catalogTest();
     }
 
     private static void itemTest() {
@@ -17,5 +18,14 @@ public class ShoppingTest {
         // toString test
         System.out.println(putty);
         System.out.println(plugs);
+    }
+
+    private static void catalogTest() {
+        Catalog list = new Catalog("Roosevelt CS Gift Catalog");
+        list.add(new Item("Wannabe", 0.2));
+        list.add(new Item("Dumbass", 0.1));
+        System.out.println(list.size());
+        System.out.println(list.get(0));
+        System.out.println(list.getName());
     }
 }
