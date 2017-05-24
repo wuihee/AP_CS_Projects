@@ -1,5 +1,5 @@
 public class Item {
-    private String name;
+    String name;
     private double price;
     private int bulkQuantity;
     private double bulkPrice;
@@ -29,10 +29,10 @@ public class Item {
     double priceFor(int quantity) {
         // Returns the price for a given quantity of the item.
         quantity = (int) isNegativeValue(quantity, "quantity");
-        if (quantity % bulkQuantity == 0) {
-            return bulkPrice * (quantity / bulkQuantity);
+        if (bulkQuantity == 0) {
+            return price * quantity;
         }
-        return price * quantity;
+        return price * (quantity % bulkQuantity) + bulkPrice * quantity / bulkQuantity;
     }
 
     public String toString() {
