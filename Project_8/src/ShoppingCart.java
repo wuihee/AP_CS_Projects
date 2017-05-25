@@ -1,7 +1,9 @@
 import java.util.*;
 
 public class ShoppingCart {
-    private double discount = 1;
+    // ShoppingCart stores information about the overall order.
+
+    private double discount = 1; // 1 refers to 100%.
     private ArrayList<ItemOrder> cart;
 
     ShoppingCart() {
@@ -9,22 +11,25 @@ public class ShoppingCart {
     }
 
     void add(ItemOrder order) {
+        // Adds an item order to the list, replacing any previous order for this item with the new order.
         boolean replace = false;
+        int itemIdx = 0;
+
         for (ItemOrder i : cart) {
             if (i.getItem().equals(order.getItem())) {
                 replace = true;
+                break;
             }
+            itemIdx++;
         }
         if (replace) {
-            System.out.println("Do some shit");
+            cart.remove(itemIdx);  // Remove repetition.
         }
-        else {
-            cart.add(order);
-            replace = false;
-        }
+        cart.add(order);
     }
 
     void setDiscount(boolean isDiscounted) {
+        // Sets whether or not this order gets a discount (true means there is a discount, false means no discount).
         if (isDiscounted) {
             discount = 0.9;  // Set discount to 10%
         }
@@ -34,6 +39,7 @@ public class ShoppingCart {
     }
 
     double getTotal() {
+        // Returns the total cost of the shopping cart.
         double totalPrice = 0.0;
         for (ItemOrder i : cart) {
             totalPrice += i.getPrice();

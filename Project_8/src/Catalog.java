@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class Catalog {
+    // Catalog stores information about the collection of items.
+
     private String name;
     private ArrayList<Item> catalogItems = new ArrayList<>();
 

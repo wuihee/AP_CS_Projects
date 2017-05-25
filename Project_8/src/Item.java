@@ -1,4 +1,8 @@
+import java.text.*;
+
 public class Item {
+    // Item stores items in the shopping cart.
+
     String name;
     private double price;
     private int bulkQuantity;
@@ -32,14 +36,18 @@ public class Item {
         if (bulkQuantity == 0) {
             return price * quantity;
         }
-        return price * (quantity % bulkQuantity) + bulkPrice * quantity / bulkQuantity;
+        // Take bulkPrice and bulkQuantity into consideration if they are defined.
+        return price * (quantity % bulkQuantity) + bulkPrice * (quantity / bulkQuantity);
     }
 
     public String toString() {
         // 	Returns a String representation of this item.
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+        String priceText = nf.format(price);
+
         if (bulkQuantity > 0) {
-            return name + ", $" + price + " ($" + bulkPrice + " for " + bulkQuantity + ")";
+            return name + ", $" + priceText + " ($" + bulkPrice + " for " + bulkQuantity + ")";
         }
-        return name + ", $" + price;
+        return name + ", $" + priceText;
     }
 }
